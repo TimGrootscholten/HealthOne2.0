@@ -1,0 +1,43 @@
+{% extends 'default.html.twig' %}
+
+{% block title %} HealthOne - Medicijnen index{% endblock %}
+
+{% block menu %}
+    <li class="nav-item"><a class="nav-link" href="{{ path('homePage') }}">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('patientMedicijn') }}">Medicijnen</a></li>
+    <li class="nav-item active"><a class="nav-link" href="{{ path('recepten') }}">Recepten</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">contact</a></li>
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Werking</th>
+            <th>Bijwerking</th>
+            <th>Verzekerd</th>
+            <th>Bewerken</th>
+            <th>Verwijderen</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for medicijn in medicijnen %}
+            <tr>
+                <td>{{ medicijn.naam }}</td>
+                <td>{{ medicijn.werking }}</td>
+                <td>{{ medicijn.bijwerking }}</td>
+                <td>{{ medicijn.verzekerd }}</td>
+                <td><a href="{{ path('recepten', {'id': medicijn.id}) }}"><span class="fas fa-edit" style="color:red"/></a></td>
+                <td><a href="{{ path('recepten', {'id': medicijn.id}) }}"><span class="fas fa-trash-alt" style="color:red"/></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {#    <a href="{{ path('medicijnen_new') }}">Create new</a>#}
+{% endblock %}
