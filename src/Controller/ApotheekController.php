@@ -52,10 +52,9 @@ class ApotheekController extends AbstractController
     }
 
     /**
-     * @Route("/medicijn/remove{id}", name="medicijnRemove")
+     * @Route("/medicijn/remove{id}", name="medicijnRemove", methods={"DELETE"})
      */
-    public function removeMedicijn(Request $request, Medicijnen $medicijn){
-//            dd($medicijn);
+    public function removeMedicijn(Medicijnen $medicijn){
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($medicijn);
             $entityManager->flush();

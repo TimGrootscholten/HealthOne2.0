@@ -37,13 +37,13 @@ class GlobaalController extends AbstractController
         return $this->render('globaal/contact.html.twig');
     }
 
-    /**
-     * @Route("/login", name="login")
-     */
-    public function login(): Response
-    {
-        return $this->render('globaal/index.html.twig', [
-            'controller_name' => 'login',
-        ]);
-    }
+//    /**
+//     * @Route("/loginnn", name="loginnn")
+//     */
+//    public function login(): Response
+//    {
+//        return $this->render('globaal/index.html.twig', [
+//            'controller_name' => 'login',
+//        ]);
+//    }
 }
