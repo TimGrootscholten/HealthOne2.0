@@ -1,0 +1,50 @@
+{% extends 'default.html.twig' %}
+
+{% block title %} HealthOne - Recepten index{% endblock %}
+
+{% block menu %}
+    <li class="nav-item"><a class="nav-link" href="{{ path('homePage') }}">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('medicijn') }}">Medicijnen</a></li>
+    <li class="nav-item active"><a class="nav-link" href="{{ path('recept') }}">Recepten</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">contact</a></li>
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>datum</th>
+            <th>periode</th>
+            <th>Prijs</th>
+            <th>Verzekerd</th>
+            <th>Bewerken</th>
+            <th>Verwijderen</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <h1>Er zijn {{ recepten|length }} recepten</h1>
+        {% for recept in recepten %}
+            <tr>
+                <td>{{ recept.medicijnen.naam }}</td>
+                <td>{{ recept.datum|date("m/d/y")}}</td>
+                <td>{{ recept.periode }}</td>
+                <td>{{ recept.medicijnen.kosten }}</td>
+                <td>{% if recept.medicijnen.verzekerd == false %}
+                        niet
+                    {% endif %}
+                    verzekerd
+                </td>
+                <td><a href="{{ path('receptUpdate', {'id': recept.id}) }}"><span class="fas fa-edit" style="color:#ff0000"/></a></td>
+                <td><a href="{{ path('receptRemove', {'id': recept.id}) }}"><span class="fas fa-trash-alt" style="color:red"/></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <a href="{{ path('receptAdd') }}"><span class="fas fa-plus" style="font-size: 2em;color:red"/></a>
+{% endblock %}
